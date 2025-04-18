@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngPct - Applications de Conversion</title>
+    <style>
+        /* CSS intégré */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+        }
+        .platform-buttons {
+            margin: 20px;
+        }
+        .platform-buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .options {
+            display: none;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AngPct - Applications de Conversion</h1>
+    </header>
+    <main>
+        <div class="platform-buttons">
+            <button id="windows">Windows</button>
+            <button id="macos">MacOS</button>
+            <button id="linux">Linux</button>
+            <button id="mobile">Mobile</button>
+        </div>
+        <div id="windows-options" class="options">
+            <p><a href="windows_v1.zip" download>Version Windows 1</a></p>
+            <p><a href="windows_v2.zip" download>Version Windows 2</a></p>
+        </div>
+        <div id="macos-options" class="options">
+            <p><a href="macos_v1.zip" download>Version MacOS 1</a></p>
+            <p><a href="macos_v2.zip" download>Version MacOS 2</a></p>
+        </div>
+        <div id="linux-options" class="options">
+            <p><a href="linux_v1.zip" download>Version Linux 1</a></p>
+            <p><a href="linux_v2.zip" download>Version Linux 2</a></p>
+        </div>
+        <div id="mobile-options" class="options">
+            <p><a href="mobile_v1.zip" download>Version Mobile 1</a></p>
+            <p><a href="mobile_v2.zip" download>Version Mobile 2</a></p>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 - AngPct par Noé Jouberton</p>
+    </footer>
+    <script>
+        // JavaScript intégré
+        const buttons = document.querySelectorAll(".platform-buttons button");
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                // Cache toutes les options
+                const allOptions = document.querySelectorAll(".options");
+                allOptions.forEach(option => option.style.display = "none");
+                
+                // Affiche les options correspondant au bouton cliqué
+                const selectedOption = document.getElementById(this.id + "-options");
+                if (selectedOption) {
+                    selectedOption.style.display = "block";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
