@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AngPct - Applications de Conversion</title>
-    <!-- Font Awesome pour les icônes -->
+    <title>AngPct - Outil de Conversion</title>
+    <!-- Balises SEO -->
+    <meta name="description" content="Découvrez AngPct, un outil efficace pour vos besoins de conversion. Téléchargez les dernières versions ici.">
+    <meta name="keywords" content="AngPct, outil de conversion, téléchargement, logiciel, versions AngPct">
+    <meta name="author" content="Noé Jouberton">
+    <!-- Liens pour les icônes -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Style global */
@@ -129,7 +133,7 @@
             <div class="download-buttons">
                 <button id="windows-version1" onclick="window.location.href='AngPct%20%20vers%201.0.exe';" download>Windows Version 1</button>
                 <button id="windows-version2" onclick="window.location.href='AngPct%20%20vers%201.1.exe';" download>Windows Version 2</button>
-                <button id="windows-version3" onclick="window.location.href='AngPct%20%20vers%201.2.exe';" download>Windows Version 3 /!\</button>
+                <button id="windows-version3" onclick="window.location.href='AngPct%20%20vers%201.2.exe';" download>Windows Version 3</button>
             </div>
         </div>
         <div id="macos-options" class="options">
@@ -155,15 +159,12 @@
         <p>© 2025 - AngPct par Noé Jouberton</p>
     </footer>
     <script>
-        // JavaScript intégré pour interactivité
         const buttons = document.querySelectorAll(".platform-buttons button");
         buttons.forEach(button => {
             button.addEventListener("click", function() {
-                // Cache toutes les options
                 const allOptions = document.querySelectorAll(".options");
                 allOptions.forEach(option => option.classList.remove("active"));
                 
-                // Affiche les options correspondant au bouton cliqué
                 const selectedOption = document.getElementById(this.id + "-options");
                 if (selectedOption) {
                     selectedOption.classList.add("active");
