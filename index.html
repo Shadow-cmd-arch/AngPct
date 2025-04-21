@@ -23,7 +23,7 @@
       --button-hover-bg: #0056b3;
       --footer-bg: #333333;
     }
-    /* Variables pour le thème sombre, activées lorsque le body a la classe "dark" */
+    /* Variables pour le thème sombre, activées quand le body a la classe "dark" */
     body.dark {
       --bg-color: #121212;
       --text-color: #e0e0e0;
@@ -50,12 +50,12 @@
       display: flex;              /* Affichage en flex */
       align-items: center;        /* Centrage vertical des éléments */
       justify-content: center;    /* Centrage horizontal des éléments */
-      gap: 20px;                  /* Espacement entre le logo, le titre et le bouton */
+      gap: 20px;                  /* Espacement entre le logo, le titre et le bouton (optionnel si vous voulez le mettre dans le footer) */
       border-bottom: 3px solid var(--header-border-color);
     }
     header h1 {
       animation: fadeIn 1.5s ease-in-out;
-      margin: 0; /* Pour assurer un alignement parfait */
+      margin: 0;
     }
     @keyframes fadeIn {
       0% {
@@ -67,7 +67,6 @@
         transform: translateY(0);
       }
     }
-    /* Les boutons de la section plateforme et téléchargement */
     .platform-buttons, .download-buttons {
       margin: 20px;
     }
@@ -82,28 +81,13 @@
       background-color: var(--button-bg);
       transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     }
-    button#windows {
-      background-color: #0056b3; /* Bleu classique */
-    }
-    button#linux {
-      background-color: #218838; /* Vert vif */
-    }
-    button#macos {
-      background-color: #495057; /* Gris foncé */
-    }
-    button#mobile {
-      background-color: #e06b20; /* Orange vif */
-    }
-    button#windows-version1 {
-      background-color: #0056b3; /* Bleu classique */
-    }
-    button#windows-version2 {
-      background-color: #0056b3; /* Bleu foncé */
-    }
-    button#windows-version3 {
-      background-color: #0056b3; /* Bleu lumineux */
-    }
-    /* Effets au survol pour tous les boutons */
+    button#windows { background-color: #0056b3; }
+    button#linux { background-color: #218838; }
+    button#macos { background-color: #495057; }
+    button#mobile { background-color: #e06b20; }
+    button#windows-version1,
+    button#windows-version2,
+    button#windows-version3 { background-color: #0056b3; }
     button:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -122,21 +106,20 @@
     .not-available {
       margin: 20px auto;
       padding: 15px;
-      border: 2px dashed #ff6b6b; /* Bordure rouge élégante */
+      border: 2px dashed #ff6b6b;
       border-radius: 10px;
-      background-color: #ffe6e6; /* Fond rouge pastel */
+      background-color: #ffe6e6;
       max-width: 500px;
       text-align: center;
-      animation: fadeIn 0.8s ease-in-out;
     }
     .not-available i {
       font-size: 24px;
-      color: #ff3b3b; /* Rouge vif pour l'icône */
+      color: #ff3b3b;
       margin-bottom: 10px;
     }
     .not-available p {
       font-size: 16px;
-      color: #a94442; /* Rouge doux pour le texte */
+      color: #a94442;
       margin: 0;
       font-weight: bold;
     }
@@ -171,7 +154,7 @@
     }
   </style>
 </head>
-<!-- La classe "dark" est présente pour démarrer en mode sombre par défaut -->
+<!-- On démarre en mode sombre par défaut -->
 <body class="dark">
   <header>
     <img src="AngPtc_3.ico" alt="Logo AngPct" style="width: 150px; height: auto;">
@@ -219,35 +202,36 @@
       <button onclick="window.location.href='help.html'">
         <i class="fa-solid fa-question-circle"></i> Besoin d'aide
       </button>
-      <!-- Bouton de bascule du mode sombre placé dans le footer -->
+      <!-- Bouton de bascule du mode placé dans le footer -->
       <button id="darkModeBtn" onclick="toggleDarkMode()">
-        <!-- Puisque le site démarre en mode sombre, on affiche le soleil (pour passer en mode clair) -->
         <i class="fa-solid fa-sun"></i> Mode Clair
       </button>
     </div>
   </footer>
   <script>
-    // Gestion des options pour chaque plateforme
-    const buttons = document.querySelectorAll(".platform-buttons button");
-    buttons.forEach(button => {
-      button.addEventListener("click", function() {
-        const allOptions = document.querySelectorAll(".options");
-        allOptions.forEach(option => option.classList.remove("active"));
-        const selectedOption = document.getElementById(this.id + "-options");
-        if (selectedOption) {
-          selectedOption.classList.add("active");
-        }
-      });
+    // À chaque chargement, on vérifie le thème stocké dans localStorage et on l'applique
+    document.addEventListener("DOMContentLoaded", function() {
+      const storedTheme = localStorage.getItem("theme");
+      const btn = document.getElementById("darkModeBtn");
+      if (storedTheme === "light") {
+        document.body.classList.remove("dark");
+        btn.innerHTML = '<i class="fa-solid fa-moon"></i> Mode Sombre';
+      } else {
+        document.body.classList.add("dark");
+        btn.innerHTML = '<i class="fa-solid fa-sun"></i> Mode Clair';
+      }
     });
     
-    // Fonction de bascule du mode sombre
+    // Fonction de bascule du mode (dark/light) et enregistrement dans localStorage
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
       const btn = document.getElementById("darkModeBtn");
       if (document.body.classList.contains("dark")) {
         btn.innerHTML = '<i class="fa-solid fa-sun"></i> Mode Clair';
+        localStorage.setItem("theme", "dark");
       } else {
         btn.innerHTML = '<i class="fa-solid fa-moon"></i> Mode Sombre';
+        localStorage.setItem("theme", "light");
       }
     }
   </script>
