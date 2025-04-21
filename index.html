@@ -9,7 +9,7 @@
   <meta name="keywords" content="AngPct, outil de conversion, téléchargement, logiciel, versions AngPct, pourcent, pourcentages, degrés">
   <meta name="author" content="Noé Jouberton">
   <link rel="sitemap" type="application/xml" href="https://shadow-cmd-arch.github.io/NewSite/sitemap.xml">
-  <!-- Liens pour les icônes -->
+  <!-- Liens pour les icônes (Font Awesome) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="AngPtc_3.ico">
   <style>
@@ -67,22 +67,7 @@
         transform: translateY(0);
       }
     }
-    /* Bouton pour activer/désactiver le mode sombre */
-    #darkModeBtn {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      background-color: var(--button-bg);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-    }
-    #darkModeBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      background-color: var(--button-hover-bg);
-    }
+    /* Les boutons de la section plateforme et téléchargement */
     .platform-buttons, .download-buttons {
       margin: 20px;
     }
@@ -118,7 +103,7 @@
     button#windows-version3 {
       background-color: #0056b3; /* Bleu lumineux */
     }
-    /* Effets au survol */
+    /* Effets au survol pour tous les boutons */
     button:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -163,7 +148,7 @@
       bottom: 0;
       width: 100%;
     }
-    /* Conteneur pour les boutons du footer (affichage côte à côte) */
+    /* Conteneur pour les boutons dans le footer (affichage côte à côte) */
     footer .footer-buttons {
       display: flex;
       justify-content: center;
@@ -186,13 +171,11 @@
     }
   </style>
 </head>
-<!-- On ajoute la classe "dark" pour démarrer en mode sombre -->
+<!-- La classe "dark" est présente pour démarrer en mode sombre par défaut -->
 <body class="dark">
   <header>
     <img src="AngPtc_3.ico" alt="Logo AngPct" style="width: 150px; height: auto;">
     <h1>AngPct - Applications de Conversion</h1>
-    <!-- Comme le mode sombre est par défaut, le bouton affiche "Mode Clair" -->
-    <button id="darkModeBtn" onclick="toggleDarkMode()">Mode Clair</button>
   </header>
   <main>       
     <div class="platform-buttons">
@@ -236,6 +219,11 @@
       <button onclick="window.location.href='help.html'">
         <i class="fa-solid fa-question-circle"></i> Besoin d'aide
       </button>
+      <!-- Bouton de bascule du mode sombre placé dans le footer -->
+      <button id="darkModeBtn" onclick="toggleDarkMode()">
+        <!-- Puisque le site démarre en mode sombre, on affiche le soleil (pour passer en mode clair) -->
+        <i class="fa-solid fa-sun"></i> Mode Clair
+      </button>
     </div>
   </footer>
   <script>
@@ -251,15 +239,15 @@
         }
       });
     });
-
+    
     // Fonction de bascule du mode sombre
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
       const btn = document.getElementById("darkModeBtn");
       if (document.body.classList.contains("dark")) {
-        btn.textContent = "Mode Clair";
+        btn.innerHTML = '<i class="fa-solid fa-sun"></i> Mode Clair';
       } else {
-        btn.textContent = "Mode Sombre";
+        btn.innerHTML = '<i class="fa-solid fa-moon"></i> Mode Sombre';
       }
     }
   </script>
