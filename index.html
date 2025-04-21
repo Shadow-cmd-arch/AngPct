@@ -13,22 +13,45 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="AngPtc_3.ico">
   <style>
+    /* Variables pour le thème clair */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --header-bg: #007BFF;
+      --header-border-color: #0056b3;
+      --button-bg: #007BFF;
+      --button-hover-bg: #0056b3;
+      --footer-bg: #333333;
+    }
+    /* Variables pour le thème sombre, activées lorsque le body a la classe "dark" */
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --header-bg: #1f1f1f;
+      --header-border-color: #444444;
+      --button-bg: #444444;
+      --button-hover-bg: #555555;
+      --footer-bg: #1f1f1f;
+    }
     /* Style global */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #ffffff;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       margin: 0;
       padding: 0;
+      transition: background-color 0.3s, color 0.3s;
     }
     header {
-      background-color: #007BFF;
+      background-color: var(--header-bg);
       color: white;
       padding: 20px;
       display: flex;              /* Affichage en flex */
       align-items: center;        /* Centrage vertical des éléments */
       justify-content: center;    /* Centrage horizontal des éléments */
-      gap: 20px;                  /* Espacement entre le logo et le titre */
+      gap: 20px;                  /* Espacement entre le logo, le titre et le bouton */
+      border-bottom: 3px solid var(--header-border-color);
     }
     header h1 {
       animation: fadeIn 1.5s ease-in-out;
@@ -44,6 +67,22 @@
         transform: translateY(0);
       }
     }
+    /* Bouton pour activer/désactiver le mode sombre */
+    #darkModeBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: var(--button-bg);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    }
+    #darkModeBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      background-color: var(--button-hover-bg);
+    }
     .platform-buttons, .download-buttons {
       margin: 20px;
     }
@@ -55,6 +94,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      background-color: var(--button-bg);
       transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     }
     button#windows {
@@ -116,7 +156,7 @@
       font-weight: bold;
     }
     footer {
-      background-color: #333;
+      background-color: var(--footer-bg);
       color: white;
       padding: 10px;
       position: fixed;
@@ -137,7 +177,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      background-color: #007BFF;
+      background-color: var(--button-bg);
       transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     }
     footer button:hover {
@@ -146,12 +186,15 @@
     }
   </style>
 </head>
-<body>
+<!-- On ajoute la classe "dark" pour démarrer en mode sombre -->
+<body class="dark">
   <header>
     <img src="AngPtc_3.ico" alt="Logo AngPct" style="width: 150px; height: auto;">
     <h1>AngPct - Applications de Conversion</h1>
+    <!-- Comme le mode sombre est par défaut, le bouton affiche "Mode Clair" -->
+    <button id="darkModeBtn" onclick="toggleDarkMode()">Mode Clair</button>
   </header>
-  <main>
+  <main>       
     <div class="platform-buttons">
       <button id="windows"><i class="fa-brands fa-windows"></i> Windows</button>
       <button id="macos"><i class="fa-brands fa-apple"></i> MacOS</button>
@@ -196,18 +239,29 @@
     </div>
   </footer>
   <script>
+    // Gestion des options pour chaque plateforme
     const buttons = document.querySelectorAll(".platform-buttons button");
     buttons.forEach(button => {
       button.addEventListener("click", function() {
         const allOptions = document.querySelectorAll(".options");
         allOptions.forEach(option => option.classList.remove("active"));
-        
         const selectedOption = document.getElementById(this.id + "-options");
         if (selectedOption) {
           selectedOption.classList.add("active");
         }
       });
     });
+
+    // Fonction de bascule du mode sombre
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      const btn = document.getElementById("darkModeBtn");
+      if (document.body.classList.contains("dark")) {
+        btn.textContent = "Mode Clair";
+      } else {
+        btn.textContent = "Mode Sombre";
+      }
+    }
   </script>
 </body>
 </html>
