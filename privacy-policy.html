@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Politique de confidentialité - AngPct</title>
     <style>
-        /* Style global */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
+        /* Assurer une hauteur minimale de la page */
+        html, body {
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+        /* Utiliser Flexbox pour organiser la page afin que le main prenne tout l'espace disponible */
+        body {
+            display: flex;
+            flex-direction: column;
         }
         header {
             background-color: #007BFF;
@@ -23,6 +29,7 @@
             margin: 0;
         }
         main {
+            flex: 1; /* Permet au main de prendre tout l'espace disponible entre le header et le footer */
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
